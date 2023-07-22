@@ -1,24 +1,24 @@
 import {Schema,model,Document} from "mongoose";
 
 //create interfacecs for different parts fo the schema to have  an appropriate specification of the Mongoose model
-interface Contact {
+export interface Contact {
     email: string;
     phone: string;
 }
 
-interface Address {
+export interface Address {
     street: string;
     city: string;
     country: string;
 
 }
 
-interface ParkingFacilities{
+export interface ParkingFacilities{
     type:string[];
     default: string[];
 }
 
-interface ParkingModel extends Document{
+export interface ParkingModel extends Document{
     name:string;
     location: string;
     capacity: number;
@@ -29,11 +29,10 @@ interface ParkingModel extends Document{
     contact: Contact;
     address: Address;
     facilities: ParkingFacilities;
-    imageUrl: string;
 
 }
 
-const ParkingSchema = new Schema<ParkingModel>({
+ const ParkingSchema = new Schema<ParkingModel>({
     name: {
       type: String,
       required: true,
@@ -90,10 +89,7 @@ const ParkingSchema = new Schema<ParkingModel>({
       type: [String],
       default: [],
     },
-    imageUrl: {
-      type: String,
-      required: true,
-    },
+  
   });
   
   const Parking = model<ParkingModel>("Parking", ParkingSchema);
